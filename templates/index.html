@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Veda's Studio - Luxury nail art and boutique services in Sama, Vadodara." />
+    <title>Veda's Studio | Luxury Nail Art & Boutique</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+  </head>
+  <body>
+    {% set studio = {"name": "Veda's Studio", "tagline": "From Nails to Threads style unfolds"} %}
+    {% set location_text = "Sama, Vadodara" %}
+    {% set phone_display = "8160413072" %}
+    {% set phone_e164 = "+918160413072" %}
+    {% set whatsapp_link = "https://wa.me/918160413072" %}
+    {% set instagram_user = "vedasstudio2024" %}
+    {% set instagram_link = "https://instagram.com/vedasstudio2024" %}
+    {% set facebook_link = "https://facebook.com/vedasstudio2024" %}
+    {% set managed_by = "bloomdigital2025" %}
+    {% set maps_link = "https://www.google.com/maps?q=22.348927313089746,73.20556614232908" %}
+    {% set contact_name = "Kinjal Patel" %}
+    {% set full_address_lines = [
+      "Vrundavan Park Society, D/18, Opp. Avsar Party Plot,",
+      "New Sama, Vadodara, Gujarat - 390024"
+    ] %}
+    {% set maps_q = "22.348927313089746,73.20556614232908" %}
+
+    {# Use ONLY /static/images. Numeric files are reliable and avoid broken special-character filenames. #}
+    {% set img_hero_1 = url_for('static', filename='images/22.jpeg') %}
+    {% set img_hero_2 = url_for('static', filename='images/33.jpeg') %}
+    {% set img_hero_3 = url_for('static', filename='images/16.jpeg') %}
+
+    {# My Story required image #}
+    {% set img_story = url_for('static', filename='images/22.jpeg') %}
+
+    {# Services images (carefully mapped) #}
+    {% set img_service_extensions = url_for('static', filename='images/16.jpeg') %}
+    {% set img_service_gel = url_for('static', filename='images/7.jpeg') %}
+    {% set img_service_acrylic = url_for('static', filename='images/33.jpeg') %}
+    {% set img_service_presson = url_for('static', filename='images/30.jpeg') %}
+
+    {% set curated_hero = [img_hero_1, img_hero_2, img_hero_3] %}
+    {% set hero_set = curated_hero %}
+    {% if hero_images is defined and hero_images|length > 0 and 'hero-' in (hero_images|join(' ')) %}
+      {% set hero_set = hero_images %}
+    {% endif %}
+
+    {# Gallery images are validated server-side (corrupt files removed) #}
+    {% set gallery_final = (gallery_images if gallery_images is defined and gallery_images|length > 0 else curated_hero) %}
+    {% set faces_set = gallery_final[:12] %}
+
+    {# Reviews thumbs #}
+    {% set img_review_1 = img_service_gel %}
+    {% set img_review_2 = img_service_extensions %}
+    {% set img_review_3 = img_service_acrylic %}
+
+    <div class="loading" id="loading" aria-hidden="true">
+      <div class="loading__spinner" role="status" aria-label="Loading"></div>
+    </div>
+
+    <header class="header" id="top">
+      <div class="scroll-progress" aria-hidden="true">
+        <span class="scroll-progress__bar" id="scrollProgressBar"></span>
+      </div>
+      <div class="container header__inner">
+        <a class="logo" href="#home" aria-label="Veda's Studio - Home">
+          <span class="logo__mark" aria-hidden="true"></span>
+          <span class="logo__text">{{ studio.name }}</span>
+        </a>
+
+        <nav class="nav" id="nav" aria-label="Primary navigation">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#services">Services</a>
+          <a href="#appointment">Appointment</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="header__actions" aria-label="Social links">
+          <a class="icon-btn" href="{{ instagram_link }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M16 7.5a.5.5 0 0 1 .5-.5h0A.5.5 0 0 1 17 7.5h0A.5.5 0 0 1 16.5 8h0A.5.5 0 0 1 16 7.5Z"
+                fill="currentColor"
+              />
+              <path
+                d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4Z"
+                fill="currentColor"
+              />
+              <path d="M12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z" fill="currentColor" />
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="{{ facebook_link }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M13.5 22v-9h3l.5-3H13.5V8.2c0-.86.3-1.45 1.6-1.45H17V4.1c-.33-.05-1.46-.14-2.8-.14C11.5 3.96 10 5.6 10 8.1V10H7v3h3v9h3.5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+
+          <a class="icon-btn" href="{{ maps_link }}" target="_blank" rel="noopener noreferrer" aria-label="Location">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M12 22s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Zm0-9.5a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Z"
+                fill="currentColor"
+              />
+            </svg>
+          </a>
+        </div>
+
+        <button class="nav-toggle" id="navToggle" aria-controls="nav" aria-expanded="false" aria-label="Open menu">
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+          <span class="nav-toggle__bar"></span>
+        </button>
+      </div>
+    </header>
+
+    <main>
+      <!-- HERO -->
+      <section class="hero" id="home" aria-label="Home">
+        <div class="hero-media" id="heroMedia" data-images='{{ hero_set|tojson }}' aria-hidden="true">
+          <div class="hero-media__layer is-active"></div>
+          <div class="hero-media__layer"></div>
+          <div class="hero-media__overlay"></div>
+        </div>
+
+        <div class="container hero__inner">
+          <div class="hero__right reveal">
+            <p class="kicker">{{ location_text }}</p>
+            <h1 class="hero__title">
+              {{ studio.name }}
+              <span class="hero__tagline">{{ studio.tagline }}</span>
+            </h1>
+            <p class="hero__lead">
+              Come in for luxurious beauty services performed by our highly skilled professionals.
+            </p>
+            <div class="hero__cta">
+              <a class="btn btn--primary" href="#appointment">Book Now</a>
+              <a class="btn btn--outline" href="#services">Explore Services</a>
+            </div>
+
+            <div class="hero__chips" aria-label="Highlights">
+              <span class="chip">Premium Finishes</span>
+              <span class="chip">Hygienic Care</span>
+              <span class="chip">Modern Styles</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- LUXURY MARQUEE -->
+      <section class="marquee" aria-label="Highlights">
+        <div class="container">
+          <div class="marquee__rail" aria-hidden="true">
+            <div class="marquee__track">
+              <span>Signature Nail Extensions</span>
+              <span>Gel Polish Shine</span>
+              <span>Acrylic Sculpt</span>
+              <span>Press-On Sets</span>
+              <span>Luxury Finishes</span>
+              <span>Signature Nail Extensions</span>
+              <span>Gel Polish Shine</span>
+              <span>Acrylic Sculpt</span>
+              <span>Press-On Sets</span>
+              <span>Luxury Finishes</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT / MY STORY -->
+      <section class="section" id="about" aria-label="My story">
+        <div class="container">
+          <div class="section__head">
+            <p class="section__eyebrow reveal">My Story</p>
+            <h2 class="section__title reveal">My Story</h2>
+            <p class="section__sub reveal">
+              A calm, luxury studio where nails meet wardrobe styling—crafted with detail, designed with taste.
+            </p>
+          </div>
+
+            <div class="about reveal">
+              <div class="about__media">
+                <img src="{{ img_story }}" alt="Veda's Studio - My Story" loading="lazy" data-fallback />
+              </div>
+              <div class="about__content">
+              <h3 class="about__title">A Luxury Beauty Brand Experience</h3>
+              <p class="about__text">
+                At {{ studio.name }}, we focus on clean technique, elevated aesthetics, and a premium finish. Whether you
+                choose subtle elegance or statement glam, every service is tailored with care—so you walk out feeling
+                polished, confident, and beautifully styled.
+              </p>
+              <div class="about__meta">
+                <div class="meta">
+                  <span class="meta__label">Location</span>
+                  <span class="meta__value">{{ location_text }}</span>
+                </div>
+                <div class="meta">
+                  <span class="meta__label">Instagram</span>
+                  <a class="meta__value" href="{{ instagram_link }}" target="_blank" rel="noopener noreferrer">@{{ instagram_user }}</a>
+                </div>
+              </div>
+              <a class="btn btn--primary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">WhatsApp Booking</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section class="section section--tint" id="services" aria-label="Services">
+        <div class="container">
+          <div class="section__head">
+            <p class="section__eyebrow reveal">Treatments</p>
+            <h2 class="section__title reveal">Beauty Treatments at Veda's Studio</h2>
+            <p class="section__sub reveal">Premium nail enhancements, long-wear shine, and luxury finishes.</p>
+          </div>
+
+          <div class="services">
+            <article class="service-card service-card--featured reveal">
+              <div class="service-card__media">
+                <img
+                  class="service-card__img"
+                  src="{{ img_service_extensions }}"
+                  alt="Stylish nail extensions with creative nail art and premium detailing"
+                  loading="lazy"
+                  data-fallback
+                />
+                <div class="service-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M7 17c0 2 2.2 4 5 4s5-2 5-4V7c0-2-2.2-4-5-4S7 5 7 7v10Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <path d="M9 9h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    <path d="M9 12h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                </div>
+                <span class="service-card__badge" aria-hidden="true">Signature</span>
+              </div>
+              <h3 class="service-card__title">Nail Extension (Temporary &amp; Permanent)</h3>
+              <p class="service-card__text">Length, structure and shape—designed to look luxe and feel comfortable.</p>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-card__media">
+                <img
+                  class="service-card__img"
+                  src="{{ img_service_gel }}"
+                  alt="Glossy gel polish manicure with a smooth, glass-like shine"
+                  loading="lazy"
+                  data-fallback
+                />
+                <div class="service-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M6 14c0 3.314 2.686 6 6 6s6-2.686 6-6c0-2.4-1.6-4.4-3.8-5.5L12 4L9.8 8.5C7.6 9.6 6 11.6 6 14Z"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <path d="M9 14.2c.7 1.6 2.2 2.8 4 2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="service-card__title">Gel Polish</h3>
+              <p class="service-card__text">High-gloss, chip-resistant color that stays flawless for days.</p>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-card__media">
+                <img
+                  class="service-card__img"
+                  src="{{ img_service_acrylic }}"
+                  alt="Long structured acrylic nails with a strong shape and premium finish"
+                  loading="lazy"
+                  data-fallback
+                />
+                <div class="service-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 20l6-16h4l6 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                    <path d="M7 14h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="service-card__title">Nail Acrylic Extension</h3>
+              <p class="service-card__text">Strong, durable extensions with a premium finish and perfect shape.</p>
+            </article>
+
+            <article class="service-card reveal">
+              <div class="service-card__media">
+                <img
+                  class="service-card__img"
+                  src="{{ img_service_presson }}"
+                  alt="Glossy modern nails with a smooth finish, perfect for press-on nail styles"
+                  loading="lazy"
+                  data-fallback
+                />
+                <div class="service-card__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                    <path d="M7 7h10v10H7V7Z" stroke="currentColor" stroke-width="1.6" />
+                    <path d="M9 9h6v6H9V9Z" stroke="currentColor" stroke-width="1.6" />
+                  </svg>
+                </div>
+              </div>
+              <h3 class="service-card__title">Press On Nails</h3>
+              <p class="service-card__text">Ready-to-wear luxury sets—perfect for events and quick glam.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- GALLERY (Instagram-style) -->
+      <section class="section" id="gallery" aria-label="Gallery">
+        <div class="container">
+          <div class="section__head">
+            <p class="section__eyebrow reveal">Instagram Edit</p>
+            <h2 class="section__title reveal">Gallery</h2>
+            <p class="section__sub reveal">An Instagram-style edit of our best sets—tap any image to view full-screen.</p>
+          </div>
+
+          <div class="ig-grid" aria-label="Instagram grid">
+            {% for img in gallery_final %}
+              <button
+                class="ig-tile reveal {% if loop.index in [1, 6, 9] %}ig-tile--big{% endif %}"
+                type="button"
+                data-full="{{ img }}"
+                aria-label="Open image"
+              >
+                <img src="{{ img }}" alt="Veda's Studio nail design" loading="lazy" data-fallback />
+                <span class="ig-tile__shine" aria-hidden="true"></span>
+              </button>
+            {% endfor %}
+          </div>
+        </div>
+      </section>
+
+      <!-- TRENDING NAIL DESIGNS -->
+      <section class="section" id="faces" aria-label="Trending nail designs">
+        <div class="container">
+          <div class="section__head">
+            <p class="section__eyebrow reveal">Trending</p>
+            <h2 class="section__title reveal">Trending Nail Designs</h2>
+            <p class="section__sub reveal">Explore our latest and most loved nail creations.</p>
+          </div>
+
+          <div class="faces reveal">
+            <button class="faces__nav faces__nav--prev" type="button" aria-label="Scroll left" data-faces-prev>&lsaquo;</button>
+            <div class="faces__track" id="facesTrack">
+              {% for img in faces_set %}
+                <button class="faces__item" type="button" data-full="{{ img }}" aria-label="Open image">
+                  <img src="{{ img }}" alt="Trending nail look" loading="lazy" data-fallback />
+                </button>
+              {% endfor %}
+            </div>
+            <button class="faces__nav faces__nav--next" type="button" aria-label="Scroll right" data-faces-next>&rsaquo;</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- REVIEWS -->
+      <section class="section section--tint" id="reviews" aria-label="Reviews">
+        <div class="container">
+          <div class="section__head">
+            <p class="section__eyebrow reveal">Testimonials</p>
+            <h2 class="section__title reveal">Reviews</h2>
+            <p class="section__sub reveal">Real words. Real glow. Real confidence.</p>
+          </div>
+
+          <div class="reviews">
+            <article class="review-card review-card--featured reveal">
+              <div class="review-card__top">
+                <div class="review-thumb" aria-hidden="true">
+                  <img src="{{ img_review_1 }}" alt="" loading="lazy" data-fallback />
+                </div>
+                <div>
+                  <p class="review-card__name">Ayesha</p>
+                  <p class="review-card__meta">Vadodara</p>
+                </div>
+              </div>
+              <div class="stars" aria-label="5 stars">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <p class="review-card__text">
+                “Super clean work and the finish is so premium. The gel polish looked flawless for days.”
+              </p>
+            </article>
+
+            <article class="review-card reveal">
+              <div class="review-card__top">
+                <div class="review-thumb" aria-hidden="true">
+                  <img src="{{ img_review_2 }}" alt="" loading="lazy" data-fallback />
+                </div>
+                <div>
+                  <p class="review-card__name">Krupa</p>
+                  <p class="review-card__meta">Sama</p>
+                </div>
+              </div>
+              <div class="stars" aria-label="5 stars">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <p class="review-card__text">
+                “Extensions were lightweight and perfectly shaped. Loved the calm luxury vibe of the studio.”
+              </p>
+            </article>
+
+            <article class="review-card reveal">
+              <div class="review-card__top">
+                <div class="review-thumb" aria-hidden="true">
+                  <img src="{{ img_review_3 }}" alt="" loading="lazy" data-fallback />
+                </div>
+                <div>
+                  <p class="review-card__name">Sneha</p>
+                  <p class="review-card__meta">Vadodara</p>
+                </div>
+              </div>
+              <div class="stars" aria-label="5 stars">
+                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+              </div>
+              <p class="review-card__text">
+                “Press-on set looked like a salon extension. Perfect for my function and photos.”
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- APPOINTMENT -->
+      <section class="section section--highlight" id="appointment" aria-label="Appointment">
+        <div class="container">
+          <div class="appointment reveal">
+            <div class="appointment__left">
+              <h2 class="appointment__title">Book an Appointment</h2>
+              <p class="appointment__text">
+                Fast booking on WhatsApp. Share your preferred date/time, reference images, and the service you want.
+              </p>
+              <div class="appointment__cta">
+                <a class="btn btn--primary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">Book on WhatsApp</a>
+                <a class="btn btn--outline" href="tel:{{ phone_e164 }}">Call {{ phone_display }}</a>
+              </div>
+            </div>
+            <div class="appointment__right" aria-label="Contact highlights">
+              <div class="mini">
+                <span class="mini__label">Phone</span>
+                <a class="mini__value" href="tel:{{ phone_e164 }}">{{ phone_display }}</a>
+              </div>
+              <div class="mini">
+                <span class="mini__label">Instagram</span>
+                <a class="mini__value" href="{{ instagram_link }}" target="_blank" rel="noopener noreferrer">@{{ instagram_user }}</a>
+              </div>
+              <div class="mini">
+                <span class="mini__label">Location</span>
+                <a class="mini__value" href="{{ maps_link }}" target="_blank" rel="noopener noreferrer">{{ location_text }}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="section" id="contact" aria-label="Contact">
+        <div class="container">
+          <div class="section__head">
+            <p class="section__eyebrow reveal">Contact</p>
+            <h2 class="section__title reveal">Contact</h2>
+            <p class="section__sub reveal">Luxury service. Easy booking. Quick answers.</p>
+          </div>
+
+          <div class="contact-grid reveal" aria-label="Contact layout">
+            <article class="contact-panel contact-panel--address" aria-label="Address">
+              <div class="contact-panel__head">
+                <div class="contact-panel__icon" aria-hidden="true">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path
+                      d="M12 22s7-4.4 7-11a7 7 0 1 0-14 0c0 6.6 7 11 7 11Zm0-9.5a2.5 2.5 0 1 1 0-5a2.5 2.5 0 0 1 0 5Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </div>
+                <div>
+                  <p class="contact-panel__title">Address</p>
+                  <p class="contact-panel__sub">{{ studio.name }} • {{ location_text }}</p>
+                </div>
+              </div>
+
+              <p class="contact-panel__lines">
+                {% for line in full_address_lines %}
+                  <span>{{ line }}</span>
+                {% endfor %}
+              </p>
+
+              <div class="contact-panel__actions">
+                <a class="btn btn--primary" href="{{ maps_link }}" target="_blank" rel="noopener noreferrer">View on Map</a>
+                <a class="btn btn--outline" href="{{ maps_link }}" target="_blank" rel="noopener noreferrer">Get Directions</a>
+              </div>
+
+              <div class="contact-map" aria-label="Google map embed">
+                <iframe
+                  title="Veda's Studio location on Google Maps"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps?q={{ maps_q }}&output=embed"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </article>
+
+            <div class="contact-stack" aria-label="Phone and social">
+              <article class="contact-panel" aria-label="Phone">
+                <div class="contact-panel__head">
+                  <div class="contact-panel__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M6.6 10.8c1.4 2.9 3.7 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1.1-.3c1.2.4 2.5.6 3.9.6c.6 0 1 .4 1 1v3.5c0 .6-.4 1-1 1C10.6 22 2 13.4 2 3.5c0-.6.4-1 1-1H6.5c.6 0 1 .4 1 1c0 1.4.2 2.7.6 3.9c.1.4 0 .8-.3 1.1l-2.2 2.3Z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="contact-panel__title">Phone</p>
+                    <p class="contact-panel__sub">Call or book on WhatsApp</p>
+                  </div>
+                </div>
+
+                <p class="contact-panel__big">
+                  <a class="contact-panel__link" href="tel:{{ phone_e164 }}">{{ phone_display }}</a>
+                </p>
+                <p class="contact-panel__note">Contact: {{ contact_name }}</p>
+
+                <div class="contact-panel__actions">
+                  <a class="btn btn--primary" href="{{ whatsapp_link }}" target="_blank" rel="noopener noreferrer">WhatsApp Booking</a>
+                  <a class="btn btn--outline" href="tel:{{ phone_e164 }}">Call Now</a>
+                </div>
+              </article>
+
+              <article class="contact-panel" aria-label="Social media">
+                <div class="contact-panel__head">
+                  <div class="contact-panel__icon" aria-hidden="true">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                      <path
+                        d="M16 7.5a.5.5 0 0 1 .5-.5h0A.5.5 0 0 1 17 7.5h0A.5.5 0 0 1 16.5 8h0A.5.5 0 0 1 16 7.5Z"
+                        fill="currentColor"
+                      />
+                      <path
+                        d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4Z"
+                        fill="currentColor"
+                      />
+                      <path d="M12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z" fill="currentColor" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p class="contact-panel__title">Social Media</p>
+                    <p class="contact-panel__sub">See latest work &amp; updates</p>
+                  </div>
+                </div>
+
+                <div class="social-links" aria-label="Social links">
+                  <a class="social-link" href="{{ instagram_link }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                    <span class="social-link__icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M16 7.5a.5.5 0 0 1 .5-.5h0A.5.5 0 0 1 17 7.5h0A.5.5 0 0 1 16.5 8h0A.5.5 0 0 1 16 7.5Z"
+                          fill="currentColor"
+                        />
+                        <path
+                          d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2Zm9 2h-9A3.5 3.5 0 0 0 4 7.5v9A3.5 3.5 0 0 0 7.5 20h9a3.5 3.5 0 0 0 3.5-3.5v-9A3.5 3.5 0 0 0 16.5 4Z"
+                          fill="currentColor"
+                        />
+                        <path d="M12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6a3 3 0 0 0 0-6Z" fill="currentColor" />
+                      </svg>
+                    </span>
+                    <span class="social-link__label">@{{ instagram_user }}</span>
+                  </a>
+
+                  <a class="social-link" href="{{ facebook_link }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                    <span class="social-link__icon" aria-hidden="true">
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                        <path
+                          d="M13.5 22v-9h3l.5-3H13.5V8.2c0-.86.3-1.45 1.6-1.45H17V4.1c-.33-.05-1.46-.14-2.8-.14C11.5 3.96 10 5.6 10 8.1V10H7v3h3v9h3.5Z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </span>
+                    <span class="social-link__label">Facebook</span>
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TERMS / PRIVACY (for footer links) -->
+      <section class="section section--tint legal" id="terms" aria-label="Terms">
+        <div class="container">
+          <h2 class="section__title reveal">Terms</h2>
+          <p class="section__sub reveal">
+            By booking with Veda's Studio, you agree to appointment timings and service policies communicated at the time of booking.
+          </p>
+        </div>
+      </section>
+
+      <section class="section legal" id="privacy" aria-label="Privacy">
+        <div class="container">
+          <h2 class="section__title reveal">Privacy</h2>
+          <p class="section__sub reveal">
+            We only use your contact details to confirm bookings and service updates. We do not sell personal information.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer__grid">
+        <div class="footer__col">
+          <p class="footer__title">Quick Links</p>
+          <a class="footer__link" href="#contact">Contact Us</a>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__title">Find Your Style</p>
+          <a class="footer__link" href="#services">Services</a>
+          <a class="footer__link" href="#appointment">Book a Visit</a>
+          <a class="footer__link" href="{{ maps_link }}" target="_blank" rel="noopener noreferrer">Locator</a>
+        </div>
+
+        <div class="footer__col">
+          <p class="footer__title">Policies</p>
+          <a class="footer__link" href="#terms">Terms</a>
+          <a class="footer__link" href="#privacy">Privacy</a>
+        </div>
+      </div>
+
+      <div class="container footer__bar">
+        <p class="footer__fine">
+          Phone: <a class="footer__fineLink" href="tel:{{ phone_e164 }}">{{ phone_display }}</a>
+          <span class="footer__sep">|</span>
+          Instagram: <a class="footer__fineLink" href="{{ instagram_link }}" target="_blank" rel="noopener noreferrer">@{{ instagram_user }}</a>
+        </p>
+        <p class="footer__fine">Social media managed by <span class="footer__gold">{{ managed_by }}</span></p>
+      </div>
+
+      <a class="to-top" href="#top" aria-label="Back to top">
+        <span aria-hidden="true">&uarr;</span>
+      </a>
+    </footer>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <div class="lightbox__backdrop" data-close="true"></div>
+      <div class="lightbox__dialog" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button class="lightbox__close" type="button" data-close="true" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <img class="lightbox__img" id="lightboxImg" alt="Enlarged image" />
+      </div>
+    </div>
+  </body>
+</html>
