@@ -54,9 +54,21 @@
       {% set hero_set = hero_images %}
     {% endif %}
 
-    {# Gallery images are validated server-side (corrupt files removed) #}
-    {% set gallery_final = (gallery_images if gallery_images is defined and gallery_images|length > 0 else curated_hero) %}
-    {% set faces_set = gallery_final[:12] %}
+    {# Trending nail designs (hand-curated) #}
+    {% set faces_set = [
+      url_for('static', filename='images/16.jpeg'),
+      url_for('static', filename='images/7.jpeg'),
+      url_for('static', filename='images/33.jpeg'),
+      url_for('static', filename='images/30.jpeg'),
+      url_for('static', filename='images/5.jpeg'),
+      url_for('static', filename='images/12.jpeg'),
+      url_for('static', filename='images/18.jpeg'),
+      url_for('static', filename='images/21.jpeg'),
+      url_for('static', filename='images/24.jpeg'),
+      url_for('static', filename='images/25.jpeg'),
+      url_for('static', filename='images/28.jpeg'),
+      url_for('static', filename='images/29.jpeg')
+    ] %}
 
     {# Reviews thumbs #}
     {% set img_review_1 = img_service_gel %}
@@ -317,31 +329,6 @@
               <h3 class="service-card__title">Press On Nails</h3>
               <p class="service-card__text">Ready-to-wear luxury sets—perfect for events and quick glam.</p>
             </article>
-          </div>
-        </div>
-      </section>
-
-      <!-- GALLERY (Instagram-style) -->
-      <section class="section" id="gallery" aria-label="Gallery">
-        <div class="container">
-          <div class="section__head">
-            <p class="section__eyebrow reveal">Instagram Edit</p>
-            <h2 class="section__title reveal">Gallery</h2>
-            <p class="section__sub reveal">An Instagram-style edit of our best sets—tap any image to view full-screen.</p>
-          </div>
-
-          <div class="ig-grid" aria-label="Instagram grid">
-            {% for img in gallery_final %}
-              <button
-                class="ig-tile reveal {% if loop.index in [1, 6, 9] %}ig-tile--big{% endif %}"
-                type="button"
-                data-full="{{ img }}"
-                aria-label="Open image"
-              >
-                <img src="{{ img }}" alt="Veda's Studio nail design" loading="lazy" data-fallback />
-                <span class="ig-tile__shine" aria-hidden="true"></span>
-              </button>
-            {% endfor %}
           </div>
         </div>
       </section>
@@ -664,6 +651,11 @@
           <span aria-hidden="true">&times;</span>
         </button>
         <img class="lightbox__img" id="lightboxImg" alt="Enlarged image" />
+      </div>
+    </div>
+  </body>
+</html>
+
       </div>
     </div>
   </body>
